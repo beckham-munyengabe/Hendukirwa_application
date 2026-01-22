@@ -1,0 +1,130 @@
+:root {
+  --sidebar-bg: #110e1d;
+  --main-bg: #f3f4f6;
+  --accent-purple: #9333ea;
+  --text-dark: #1f2937;
+  --text-muted: #9ca3af;
+  --white: #ffffff;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--main-bg);
+  font-family: 'Inter', sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 300px;
+  background-color: var(--sidebar-bg);
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 50px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-purple);
+}
+
+.nav-menu {
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-bottom: 8px;
+}
+
+.nav-item.active {
+  background-color: var(--white);
+  color: var(--accent-purple);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex-grow: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title-group {
+  border-left: 6px solid #000;
+  padding-left: 15px;
+}
+
+.title-group h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.product-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 40px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+.price-tag {
+  color: var(--accent-purple);
+  font-weight: 900;
+  font-size: 1.5rem;
+}

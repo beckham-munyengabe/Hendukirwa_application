@@ -1,0 +1,245 @@
+:root {
+  --primary-purple: #a855f7;
+  --dark-bg: #0f172a;
+  --panel-bg: #1e293b;
+  --text-white: #f8fafc;
+  --text-dim: #94a3b8;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-bg);
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+}
+
+.auth-split-container {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 600px;
+  background: var(--panel-bg);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* INFO PANEL (LEFT) */
+.info-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.brand-badge {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 40px;
+}
+
+.info-content h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.info-content h1 span {
+  color: #f0abfc;
+}
+
+.info-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.info-footer {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* FORM PANEL (RIGHT) */
+.form-panel {
+  flex: 1.2;
+  background: var(--panel-bg);
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 360px;
+}
+
+.form-header h2 {
+  font-size: 1.8rem;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  color: var(--text-white);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: var(--text-dim);
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  background: var(--dark-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  outline: none;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--primary-purple);
+}
+
+.eye-btn {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-purple);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.toggle-area {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.toggle-area button {
+  background: none;
+  border: none;
+  color: var(--primary-purple);
+  font-weight: 700;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+  .auth-split-container {
+    flex-direction: column;
+    max-width: 450px;
+  }
+  .info-panel {
+    padding: 40px;
+  }
+  .info-footer { display: none; }
+}
+/* Circular Logo Styles */
+.logo-circle {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white; /* Base color if logo has transparency */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the circle without stretching */
+}
+
+/* Primary Logo (Left Side) */
+.primary-logo {
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); /* Purple glow */
+}
+
+/* Mini Logo (Form Side) */
+.mini-logo {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 15px;
+  background: var(--dark-bg);
+  border: 1px solid var(--primary-purple);
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: white;
+  text-transform: lowercase; /* Matches common e-comm styles */
+}
+
+/* Rest of the previous styles remain the same... */

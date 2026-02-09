@@ -7,7 +7,6 @@ export default function AuthPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="auth-wrapper">
       <div className="auth-split-container">
         
         {/* LEFT SIDE: COMPANY INFO */}

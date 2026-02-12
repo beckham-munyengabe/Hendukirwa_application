@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2026 at 06:59 PM
+-- Generation Time: Feb 09, 2026 at 07:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -32,6 +32,14 @@ CREATE TABLE `images` (
   `product_id` int(11) NOT NULL,
   `image_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`image_id`, `product_id`, `image_url`) VALUES
+(1, 2, '1770318604808.jpeg'),
+(2, 2, '1770348033771.png');
 
 -- --------------------------------------------------------
 
@@ -67,6 +75,13 @@ CREATE TABLE `products` (
   `seller_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_quantity`, `product_price`, `product_quantity_sold`, `product_remaining_quantity`, `seller_id`) VALUES
+(2, 'ibijumba', 'ryoherwa', 200, 120.00, 1233, 123, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -83,6 +98,14 @@ CREATE TABLE `sellers` (
   `address` varchar(255) NOT NULL,
   `seller_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sellers`
+--
+
+INSERT INTO `sellers` (`seller_id`, `seller_fname`, `seller_lname`, `password`, `email`, `phonenumber`, `address`, `seller_image`) VALUES
+(1, 'munyengabe', 'beckham', 'becks123', 'beckham@gmail.com', 134567891, 'Kigali', '1770047018196.jpeg'),
+(2, 'beckham', 'munyengabe', '123', 'munyengabebeckham@gmail.com', 2789, 'KK 273 St', '1770117643344.png');
 
 --
 -- Indexes for dumped tables
@@ -123,7 +146,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -135,13 +158,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

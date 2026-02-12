@@ -11,8 +11,22 @@ const Icons = {
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("general");
- 
   const [isEditing, setIsEditing] = useState(false);
+
+  // --- FIXED: Added the missing profile state ---
+  const [profile, setProfile] = useState({
+    storeName: "Kigali Tech Hub",
+    username: "@kigalitech_official",
+    email: "support@kigalitech.rw",
+    bio: "Premium electronics and tech accessories delivered straight to your door across Rwanda.",
+    twoFactor: true
+  });
+
+  // Handle input changes dynamically
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfile(prev => ({ ...prev, [name]: value }));
+  };
 
   // --- Styles ---
   const glassCard = {
@@ -46,31 +60,32 @@ export default function Profile() {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#F8FAFC", fontFamily: "'Inter', sans-serif", position: "relative", overflow: "hidden" }}>
-      {/* Decorative Background Elements */}
-      <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "400px", height: "400px", background: "rgba(99, 102, 241, 0.08)", borderRadius: "50%", filter: "blur(80px)" }} />
-      <div style={{ position: "absolute", bottom: "-5%", left: "10%", width: "300px", height: "300px", background: "rgba(168, 85, 247, 0.08)", borderRadius: "50%", filter: "blur(80px)" }} />
-
+      
       <style>{`
         .input-focus:focus { outline: none; border-color: #6366f1 !important; background: #fff !important; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
         .save-btn { background: #0f172a; color: white; border: none; padding: 12px 28px; border-radius: 14px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
         .save-btn:hover { background: #6366f1; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15); }
         .edit-active { background: #6366f1 !important; }
-        
         .toggle-track { width: 48px; height: 26px; border-radius: 20px; position: relative; cursor: pointer; transition: 0.4s; }
         .avatar-container { position: relative; transition: 0.4s ease; cursor: pointer; }
         .avatar-container:hover { transform: translateY(-4px); }
         .avatar-container:hover .camera-overlay { opacity: 1; }
-        
         .stat-card { transition: 0.3s; border: 1px solid rgba(0,0,0,0.03); }
         .stat-card:hover { transform: translateY(-3px); background: #fff !important; box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
       `}</style>
+
+      {/* Decorative Background */}
+      <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "400px", height: "400px", background: "rgba(99, 102, 241, 0.08)", borderRadius: "50%", filter: "blur(80px)" }} />
+      <div style={{ position: "absolute", bottom: "-5%", left: "10%", width: "300px", height: "300px", background: "rgba(168, 85, 247, 0.08)", borderRadius: "50%", filter: "blur(80px)" }} />
 
       <SellerSidebar />
 
       <main style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", padding: "40px", zIndex: 1 }}>
         <div style={glassCard}>
           
-          {/* Section: Header & Avatar */}
+          {/* Header & Avatar */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "48px" }}>
             <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
               <div className="avatar-container">
@@ -99,7 +114,7 @@ export default function Profile() {
             </button>
           </div>
 
-          {/* Section: Horizontal Tabs */}
+          {/* Tabs Navigation */}
           <div style={{ display: "flex", gap: "6px", background: "rgba(0,0,0,0.04)", padding: "6px", borderRadius: "18px", width: "fit-content", marginBottom: "44px" }}>
             <div onClick={() => setActiveTab("general")} style={tabStyle("general")}><Icons.User /> General</div>
             <div onClick={() => setActiveTab("security")} style={tabStyle("security")}><Icons.Shield /> Security</div>
@@ -111,17 +126,33 @@ export default function Profile() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", animation: "fadeIn 0.4s ease-out" }}>
               <div style={inputContainer}>
                 <label style={labelStyle}>Legal Store Name</label>
-                <input style={inputStyle} defaultValue={profile.storeName} className="input-focus" readOnly={!isEditing} />
+                <input 
+                  name="storeName"
+                  style={inputStyle} 
+                  value={profile.storeName} 
+                  onChange={handleChange}
+                  className="input-focus" 
+                  readOnly={!isEditing} 
+                />
               </div>
               <div style={inputContainer}>
                 <label style={labelStyle}>Support Email</label>
-                <input style={inputStyle} defaultValue={profile.email} className="input-focus" readOnly={!isEditing} />
+                <input 
+                  name="email"
+                  style={inputStyle} 
+                  value={profile.email} 
+                  onChange={handleChange}
+                  className="input-focus" 
+                  readOnly={!isEditing} 
+                />
               </div>
               <div style={{ gridColumn: "span 2" }}>
                 <label style={labelStyle}>Store Bio</label>
                 <textarea 
+                  name="bio"
                   style={{ ...inputStyle, height: "120px", resize: "none", lineHeight: "1.6" }} 
-                  defaultValue={profile.bio} 
+                  value={profile.bio} 
+                  onChange={handleChange}
                   className="input-focus" 
                   readOnly={!isEditing}
                 />
@@ -175,16 +206,11 @@ export default function Profile() {
 
         </div>
       </main>
-
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-      `}</style>
     </div>
   );
 }
 
-// Helpers (Same logic as yours, just updated values)
+// Helpers
 const inputContainer = { marginBottom: "0px" };
 const labelStyle = { display: "block", fontSize: "10px", fontWeight: "900", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: "10px" };
 const inputStyle = { width: "100%", padding: "16px 20px", borderRadius: "16px", border: "1.5px solid #F1F5F9", background: "rgba(248,250,252,0.8)", fontSize: "0.95rem", fontWeight: "600", color: "#1e293b", transition: "0.4s cubic-bezier(0.4, 0, 0.2, 1)" };

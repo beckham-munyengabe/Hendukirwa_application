@@ -33,16 +33,15 @@ db.connect((err) => {
 });
 
 const storage = multer.diskStorage({
-    destination: (_req, _file, cb) => {
-        cb(null, path.join(__dirname, 'uploads/'));
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
     },
-    filename: (_req, file, cb) => {
+    filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
-const upload = multer({ storage });
-
+const upload = multer({ storage: storage });
 // Create
 app.post('/register', upload.single('seller_image'), (req, res) => {
     try {
@@ -115,20 +114,17 @@ app.get('/products-with-images', (_req, res) => {
 });
 
 // Add image to images table
-app.post('/addimage', upload.single('image'), (req, res) => {
+app.post('/addimage', upload.single('image_url'), (req, res) => {
     try {
         const { product_id } = req.body;
         const fileName = req.file.filename;
         
-        const sql = 'INSERT INTO images (image_url, product_id) VALUES (?,?)';
-        const values = [fileName, product_id];
+        const sql = 'INSERT INTO images (product_id, image_url) VALUES (?,?)';
+        const values = [product_id, fileName];
         
         db.query(sql, values, (err) => {
             if (err) return res.status(500).json(err);
-            res.status(200).json({ 
-                message: "Image added successfully!",
-                image_url: fileName
-            });
+            res.status(200).json({ message: "Image added successfully!" });
         });
     } catch (err) {
         res.status(500).json({ error: "Make sure you selected a file!" });
@@ -136,3 +132,5 @@ app.post('/addimage', upload.single('image'), (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+

@@ -4,6 +4,7 @@ import mysql from 'mysql';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { nextTick } from 'process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -76,6 +77,21 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+//SELECT Middleware From seller
+app.get('/seller/:seller_id',(req,res)=>{
+    const seller = req.params.seller_id
+    const sql = "SELECT FROM sellers WHERE seller_id = ? "
+    db.query(sql, [seller], (err,results)=>{
+        if(err){
+            throw err
+        }
+        if(results.length === 0)
+            return res.status(404).json({message : "Seller Not Fund"})
+        req.seller = results[0]
+        next()
+    })
+})
 
 // Insert Product
 app.post('/addproduct', (req, res) => {
